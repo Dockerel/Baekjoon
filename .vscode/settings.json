@@ -4,6 +4,7 @@
         "iostream": "cpp",
         "regex": "cpp",
         "queue": "cpp",
-        "ios": "cpp"
+        "ios": "cpp",
+        "vector": "cpp"
     }
 }
