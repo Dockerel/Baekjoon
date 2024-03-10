@@ -5,6 +5,7 @@
         "regex": "cpp",
         "queue": "cpp",
         "ios": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "__locale": "c"
     }
 }
