@@ -11,8 +11,11 @@ void Input() {
   }
 }
 
+void bfs() {}
+
 void Solution() {
   // bfs 느낌으로 싹 돌리기
+  bfs();
 }
 
 void Solve() {
