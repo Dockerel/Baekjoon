@@ -23,8 +23,8 @@ void Input() {
 }
 
 void Solution() {
-  // 지훈 이동
   // 불 이동
+  // 지훈 이동
 
   while (1) {
     while (!fireQ.empty()) {
