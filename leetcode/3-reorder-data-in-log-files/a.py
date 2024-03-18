@@ -10,3 +10,5 @@ class Solution:
                 let.append(s);
         let=sorted(let,key=lambda x:(x.split()[1:],x.split()[0]))
         return let+dig
+    
+# https://leetcode.com/problems/reorder-data-in-log-files/
