@@ -1,0 +1,8 @@
+0 0       0 0
+0 0  ->   0 0
+          0 0
+
+dp[idx][0]=
+cage==0 : dp[idx+1][0]=max(dp[idx][0],max(dp[idx][1],dp[idx][2]))
+cage==1 : dp[idx+1][1]=max(dp[idx][0],dp[idx][2])
+cage==2 : dp[idx+1][2]=max(dp[idx][0],dp[idx][1])
