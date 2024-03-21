@@ -10,7 +10,7 @@ int main() {
   fastio;
 
   init();
-  cout << solve();
+  cout << solve() << "\n";
 
   return 0;
 }
