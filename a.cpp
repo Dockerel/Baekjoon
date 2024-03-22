@@ -4,13 +4,13 @@
 using namespace std;
 
 void init() {}
-int solve() {}
+int go() {}
 
 int main() {
   fastio;
 
   init();
-  cout << solve() << "\n";
+  cout << go() << "\n";
 
   return 0;
 }
