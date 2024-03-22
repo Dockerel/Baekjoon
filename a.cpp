@@ -4,6 +4,7 @@
 using namespace std;
 
 void init() {}
+
 int go() {}
 
 int main() {
