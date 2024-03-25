@@ -3,10 +3,16 @@
   ios_base::sync_with_stdio(0); \
   cin.tie(0);                   \
   cout.tie(0);
+
 using namespace std;
-int r, c;
+
+int r, c, ret = -1;
 char a[24][24];
-char alpha[30];
+int v[28];
+int y, x;
+int dy[4] = {0, 1, 0, -1};
+int dx[4] = {1, 0, -1, 0};
+
 void init() {
   cin >> r >> c;
   for (int i = 0; i < r; i++) {
@@ -15,15 +21,26 @@ void init() {
     }
   }
   memset(v, 0, sizeof(v));
-  memset(alpha, 0, sizeof(alpha));
+  v[a[0][0] - 'A'] = 1;
 }
-void solve() {
-  queue<pair<int, int>> q;
-  alpha[a[0][0] - 'A'] = 1;
-  q.push({0, 0});
-  while () }
+
+void go(int y, int x, int path) {
+  ret = max(ret, path);
+  for (int i = 0; i < 4; i++) {
+    int ny = dy[i] + y;
+    int nx = dx[i] + x;
+    if (ny < 0 || ny >= r || nx < 0 || nx >= c) continue;
+    if (v[a[ny][nx] - 'A'] == 1) continue;
+    v[a[ny][nx] - 'A'] = 1;
+    go(ny, nx, path + 1);
+    v[a[ny][nx] - 'A'] = 0;
+  }
+}
+
 int main() {
   fastIO;
   init();
-  solve();
+  go(0, 0, 1);
+  cout << ret << "\n";
+  return 0;
 }
