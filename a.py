@@ -1,6 +1,7 @@
 import sys
 
 input = sys.stdin.readline
+a,b=list(map(int,input().rstrip().split()))
 
 
 def solution(n):
