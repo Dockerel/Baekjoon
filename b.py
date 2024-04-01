@@ -1,14 +1,9 @@
 import sys
 input=sys.stdin.readline
-d=dict()
-s=input()
-for i in range(len(s)):
-    if d.get(s[i])==None:
-        d[s[i]]=i
-
-for i in range(ord('a'),ord('z')+1):
-    if d.get(chr(i))==None:
-        print(-1,end=" ")
-    else:
-        print(d[chr(i)],end=" ")
-print()
+n,m=list(map(int,input().rstrip().split()))
+ret=[0]*n
+for i in range(m):
+    b1,b2,k=list(map(int,input().rstrip().split()))
+    for j in range(b1-1,b2):
+        ret[j]=k
+print(*ret)
