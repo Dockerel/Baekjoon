@@ -29,7 +29,7 @@ bool cmp(Point &a, Point &b) {
   if (c == 0) {
     return dist(p[0], a) < dist(p[0], b);
   }
-  return c > 0;
+  return c > 0;  // p_0b가 p_0a보다 왼쪽에 있으면 그대로(시계 반대방향으로 sort)
 }
 
 void init() {
@@ -46,7 +46,9 @@ void go() {
   push(0);
   push(1);
   for (int i = 2; i < n; i++) {
-    while (top >= 2 && ccw(p[i], p[st[top - 2]], p[st[top - 1]]) <= 0)
+    while (top >= 2 && ccw(p[st[top - 2]], p[st[top - 1]], p[i]) <=
+                           0)  // ac가 ab의 반시계방향에 있으면 0보다 큰값,
+                               // 시계방향에 있으면 0보다 작은값
       top--;  // 시계 반대방향 or 선상위에 있으면 pop()
     push(i);
   }
