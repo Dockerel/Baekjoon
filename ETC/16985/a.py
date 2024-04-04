@@ -27,4 +27,3 @@ for i in [0, 4]:
             ins.append([i, j])
 
 q = deque(ins)
-print(q)
