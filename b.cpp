@@ -1,22 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n;
-int main() {
+int t, k, n;
+int dp[20][20];
+void init() {
+  cin >> k;
   cin >> n;
-  for (int i = 1; i < n; i++) {
-    int temp = i;
-    int num = i;
-
-    while (temp > 0) {
-      num += temp % 10;
-      temp /= 10;
-    }
-
-    if (num == n) {
-      cout << i << "\n";
-      n = 0;
-      break;
-    }
+  memset(dp, 0, sizeof(dp));
+  for (int i = 0; i < 20; i++) {
+    dp[0][i] = i;
   }
-  if (n != 0) cout << "0\n";
+}
+int go(int floor, int room) {
+  if (dp[floor][room]) {
+    return dp[floor][room];
+  }
+  for (int i = 1; i <= room; i++) dp[floor][room] += go(floor - 1, i);
+  return dp[floor][room];
+}
+int main() {
+  cin >> t;
+  while (t--) {
+    init();
+    cout << go(k, n) << "\n";
+  }
 }
