@@ -1,27 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 int n;
-struct Point {
-  int x, y;
-};
-vector<Point> v;
-bool cmp(Point a, Point b) {
-  if (a.x == b.x) return a.y < b.y;
-  return a.x < b.x;
-}
 int main() {
-  ios_base::sync_with_stdio(0);
-  cin.tie(0);
-  cout.tie(0);
   cin >> n;
-  for (int i = 0; i < n; i++) {
-    Point temp;
-    cin >> temp.x >> temp.y;
-    v.push_back(temp);
+  for (int i = 1; i < n; i++) {
+    int temp = i;
+    int num = i;
+
+    while (temp > 0) {
+      num += temp % 10;
+      temp /= 10;
+    }
+
+    if (num == n) {
+      cout << i << "\n";
+      n = 0;
+      break;
+    }
   }
-  sort(v.begin(), v.end(), cmp);
-  for (int i = 0; i < n; i++) {
-    cout << v[i].x << " " << v[i].y << "\n";
-  }
-  return 0;
+  if (n != 0) cout << "0\n";
 }
