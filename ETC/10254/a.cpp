@@ -6,10 +6,16 @@ int t, n;
 struct Point {
   ll x, y;
 };
+Point operator-(Point a, Point b) {
+  Point c;
+  c.x = a.x - b.x;
+  c.y = a.y - b.y;
+  return c;
+}
 vector<Point> p;
 int st[200004], top;
-Point ret[2];
-ll maxdist, d, _prev;
+int ret[2];
+ll maxdist, d;
 void push(int n) { st[top++] = n; }
 void init() {
   p.clear();
@@ -26,6 +32,12 @@ void init() {
 ll ccw(Point a, Point b, Point c) {
   return (a.x * b.y + b.x * c.y + c.x * a.y) -
          (a.y * b.x + b.y * c.x + c.y * a.x);
+}
+
+ll cccw(Point a, Point b, Point c, Point d) {
+  d.x -= (c.x - b.x);
+  d.y -= (c.y - b.y);
+  return ccw(a, b, d);
 }
 
 ll dist(Point a, Point b) {
@@ -55,31 +67,32 @@ void go() {
     push(i);
   }
 
-  // for (int i = 0; i < top; i++) {
-  //   _prev = 0;
-  //   for (int j = (i + 1) % top;; j = (j + 1) % top) {
-  //     if (i == j) break;
+  int lPoint = 0, rPoint = 0;
+  for (int i = 0; i < top; i++) {
+    if (p[st[i]].x < p[st[lPoint]].x) lPoint = i;
+    if (p[st[i]].x > p[st[rPoint]].x) rPoint = i;
+  }
+  ll diaSq = dist(p[st[lPoint]], p[st[rPoint]]);
+  ret[0] = lPoint, ret[1] = rPoint;
 
-  //     d = dist(p[st[i]], p[st[j]]);
+  Point origin;
+  origin.x = origin.y = 0;
 
-  //     if (maxdist < d) {
-  //       ret[0] = p[i];
-  //       ret[1] = p[j];
-  //       maxdist = d;
-  //     }
+  for (int i = 0; i < top; i++) {
+    if (ccw(origin, p[st[(lPoint + 1) % top]] - p[st[lPoint]],
+            p[st[rPoint]] - p[st[(rPoint + 1) % top]]) > 0) {
+      lPoint = (lPoint + 1) % top;
+    } else {
+      rPoint = (rPoint + 1) % top;
+    }
+    if (dist(p[st[lPoint]], p[st[rPoint]]) > diaSq) {
+      diaSq = dist(p[st[lPoint]], p[st[rPoint]]);
+      ret[0] = lPoint, ret[1] = rPoint;
+    }
+  }
 
-  //     if (_prev) {
-  //       if (_prev > d) {
-  //         break;
-  //       }
-  //     }
-
-  //     _prev = d;
-  //   }
-  // }
-
-  // cout << ret[0].x << " " << ret[0].y << " " << ret[1].x << " " << ret[1].y
-  //      << "\n";
+  cout << p[st[ret[0]]].x << " " << p[st[ret[0]]].y << " " << p[st[ret[1]]].x
+       << " " << p[st[ret[1]]].y << "\n";
 }
 
 int main() {
