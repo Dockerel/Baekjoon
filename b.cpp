@@ -1,26 +1,44 @@
 #include <bits/stdc++.h>
 using namespace std;
-int t, k, n;
-int dp[20][20];
+int dp[104][104];
+string s1, s2;
 void init() {
-  cin >> k;
-  cin >> n;
-  memset(dp, 0, sizeof(dp));
-  for (int i = 0; i < 20; i++) {
-    dp[0][i] = i;
+  cout << "Levenshtein Distance\n";
+  cout << "s1 : ";
+  cin >> s1;
+  cout << "s2 : ";
+  cin >> s2;
+  memset(dp, -1, sizeof(dp));
+  for (int i = 0; i <= s1.length(); i++) {
+    for (int j = 0; j <= s2.length(); j++) {
+      if (i == 0) {
+        dp[i][j] = j;
+      } else {
+        if (j == 0) {
+          dp[i][j] = i;
+        }
+      }
+    }
   }
+  return;
 }
-int go(int floor, int room) {
-  if (dp[floor][room]) {
-    return dp[floor][room];
+void go() {
+  for (int i = 0; i <= s1.length(); i++) {
+    for (int j = 0; j <= s2.length(); j++) {
+      if (dp[i][j] == -1) {
+        if (s1[i - 1] == s2[j - 1]) {
+          dp[i][j] = min(dp[i - 1][j], min(dp[i][j - 1], dp[i - 1][j - 1]));
+        } else {
+          dp[i][j] = min(dp[i - 1][j], min(dp[i][j - 1], dp[i - 1][j - 1])) + 1;
+        }
+      }
+    }
   }
-  for (int i = 1; i <= room; i++) dp[floor][room] += go(floor - 1, i);
-  return dp[floor][room];
+  return;
 }
 int main() {
-  cin >> t;
-  while (t--) {
-    init();
-    cout << go(k, n) << "\n";
-  }
+  init();
+  go();
+  cout << dp[s1.length()][s2.length()] << "\n";
+  return 0;
 }
