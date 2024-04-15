@@ -1,43 +1,26 @@
 #include <bits/stdc++.h>
 #define fastIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 using namespace std;
-int n, m, b, _time;
-int a[504][504];
-pair<int, int> ret;
+int n;
+vector<pair<int, int>> v;
+bool cmp(pair<int, int> a, pair<int, int> b) {
+  if (a.first == b.first) return a.second < b.second;
+  return a.first < b.first;
+}
 void init() {
-  cin >> n >> m >> b;
+  cin >> n;
   for (int i = 0; i < n; i++) {
-    for (int j = 0; j < m; j++) {
-      cin >> a[i][j];
-    }
+    pair<int, int> temp;
+    cin >> temp.first >> temp.second;
+    v.push_back(temp);
   }
-  ret = {1e9, -1};  // 최소시간, 최대높이
   return;
 }
 void go() {
-  for (int h = 0; h < 257; h++) {
-    int use = 0;
-    int take = 0;
-    for (int i = 0; i < n; i++) {
-      for (int j = 0; j < m; j++) {
-        if (a[i][j] > h) {
-          take += (a[i][j] - h);
-        } else {
-          use += (h - a[i][j]);
-        }
-      }
-    }
-    if (b + take < use) continue;
-    _time = take * 2 + use;
-    if (_time <= ret.first) {
-      if (_time == ret.first) {
-        if (h > ret.second) ret = {_time, h};
-      } else {
-        ret = {_time, h};
-      }
-    }
+  sort(v.begin(), v.end(), cmp);
+  for (auto it : v) {
+    cout << it.first << " " << it.second << "\n";
   }
-  cout << ret.first << " " << ret.second << "\n";
   return;
 }
 int main() {
@@ -46,3 +29,15 @@ int main() {
   go();
   return 0;
 }
+
+0 6
+1 4
+2 13
+3 5
+3 8
+5 7
+5 9
+6 10
+8 11
+8 12
+12 14
