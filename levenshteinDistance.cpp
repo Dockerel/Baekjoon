@@ -27,9 +27,11 @@ void go() {
     for (int j = 0; j <= s2.length(); j++) {
       if (dp[i][j] == -1) {
         if (s1[i - 1] == s2[j - 1]) {
-          dp[i][j] = min(dp[i - 1][j], min(dp[i][j - 1], dp[i - 1][j - 1]));
+          dp[i][j] = min(dp[i - 1][j] + 1,
+                         min(dp[i][j - 1] + 1, dp[i - 1][j - 1] + 0));
         } else {
-          dp[i][j] = min(dp[i - 1][j], min(dp[i][j - 1], dp[i - 1][j - 1])) + 1;
+          dp[i][j] = min(dp[i - 1][j] + 1,
+                         min(dp[i][j - 1] + 1, dp[i - 1][j - 1] + 1));
         }
       }
     }
