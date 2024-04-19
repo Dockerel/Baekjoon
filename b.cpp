@@ -1,26 +1,27 @@
 #include <bits/stdc++.h>
 #define fastIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 using namespace std;
-int n;
-vector<pair<int, int>> v;
-bool cmp(pair<int, int> a, pair<int, int> b) {
-  if (a.first == b.first) return a.second < b.second;
-  return a.first < b.first;
-}
+int n, m;
+int a[20000010];
+string s;
+string del;
 void init() {
   cin >> n;
-  for (int i = 0; i < n; i++) {
-    pair<int, int> temp;
-    cin >> temp.first >> temp.second;
-    v.push_back(temp);
+  cin >> m;
+  cin >> s;
+  del = "I";
+  for (int i = 0; i < n; i++) del += "OI";
+  a[0] = -1;
+  a[1] = -1;
+  a[2] = 0;
+  for (int i = 3; i < 2 * n + 1; i++) {
+    a[i] = a[i - 2] + 2;
   }
   return;
 }
 void go() {
-  sort(v.begin(), v.end(), cmp);
-  for (auto it : v) {
-    cout << it.first << " " << it.second << "\n";
-  }
+  for (int i = 0; i < s.length(); i++) {
+    }
   return;
 }
 int main() {
@@ -29,15 +30,3 @@ int main() {
   go();
   return 0;
 }
-
-0 6
-1 4
-2 13
-3 5
-3 8
-5 7
-5 9
-6 10
-8 11
-8 12
-12 14
