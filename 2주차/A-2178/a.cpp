@@ -1,56 +1,44 @@
 #include <bits/stdc++.h>
+#define fastIO ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
 using namespace std;
+int n, m, a[104][104], visited[104][104], y, x;
+string s;
 
-int n, m, y, x, next_y, next_x, ret;
-int a[104][104], visited[104][104];
-char line[104];
-
-int dy[4] = {0, 1, 0, -1};
-int dx[4] = {1, 0, -1, 0};
-
-queue<pair<pair<int, int>, int>> q;
-
-void bfs() {
-  while (!q.empty()) {
-    y = q.front().first.first;
-    x = q.front().first.second;
-    ret = q.front().second;
-    q.pop();
-
-    if (y == n - 1 && x == m - 1) {
-      cout << ret + 1;
-      return;
-    }
-
-    for (int i = 0; i < 4; i++) {
-      next_y = y + dy[i];
-      next_x = x + dx[i];
-      if (visited[next_y][next_x] == 0 && a[next_y][next_x] == 1 && x >= 0 &&
-          y >= 0 && x < m && y < n) {
-        visited[next_y][next_x] = 1;
-        q.push({{next_y, next_x}, ret + 1});
-      }
+void init() {
+  cin >> n >> m;
+  for (int i = 0; i < n; i++) {
+    cin >> s;
+    for (int j = 0; j < m; j++) {
+      a[i][j] = s[j] - '0';
     }
   }
+  memset(visited, 0, sizeof(visited));
+  return;
+}
+
+void go() {
+  queue<pair<int, int>> q;
+  visited[0][0] = 1;
+  q.push({0, 0});
+  while (!q.empty()) {
+    tie(y, x) = q.front();
+    q.pop();
+    for (int i = 0; i < 4; i++) {
+      int ny = y + "2011"[i] - '1';
+      int nx = x + "1120"[i] - '1';
+      if (ny < 0 || ny >= n || nx < 0 || nx >= m || a[ny][nx] == 0) continue;
+      if (visited[ny][nx]) continue;
+      visited[ny][nx] = visited[y][x] + 1;
+      q.push({ny, nx});
+    }
+  }
+  cout << visited[n - 1][m - 1] << "\n";
+  return;
 }
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(NULL);
-  cout.tie(NULL);
-
-  // input
-  cin >> n >> m;
-  for (int j = 0; j < n; j++) {
-    cin >> line;
-    for (int i = 0; i < strlen(line); i++)
-      if (line[i] == '1') a[j][i] = 1;
-  }
-
-  //   find route
-  visited[0][0] = 1;
-  q.push({{0, 0}, 0});
-  bfs();
-
+  fastIO;
+  init();
+  go();
   return 0;
 }
