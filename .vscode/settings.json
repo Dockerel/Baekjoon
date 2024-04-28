@@ -20,6 +20,7 @@
         "unordered_set": "cpp",
         "string_view": "cpp",
         "tuple": "cpp",
-        "cerrno": "cpp"
+        "cerrno": "cpp",
+        "ostream": "cpp"
     }
 }
