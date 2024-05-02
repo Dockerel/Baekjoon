@@ -23,17 +23,15 @@ class Trie:
                 curr.children = dict(sorted(curr.children.items()))
             curr = curr.children[data]
 
-    def dfs(self, nodes, level):
-        if len(nodes) > 0:
-            for node in nodes:
-                print(f"{levelStr*level}{node}")
-                self.dfs(node, level + 1)
+    def dfs(self, curr, level):
+        print(f"{levelStr*level}{curr.data}")
+        for child in curr.children:
+            self.dfs(curr.children[child], level + 1)
 
     def _print(self):
         curr = self.head
         for child in curr.children:
-            print(child)
-            # self.dfs(child, 0)
+            self.dfs(curr.children[child], 0)
 
 
 n = int(input())
