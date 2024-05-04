@@ -1,16 +1,22 @@
 import sys
-input=sys.stdin.readline
+from itertools import combinations as comb
 
-def go(a,b):
-    if b%a==0:
-        print("factor")
-    elif a%b==0:
-        print("multiple")
+input = sys.stdin.readline
+
+t = int(input())
+for _ in range(t):
+    ret = sys.maxsize
+    n = int(input())
+    _list = list(input().rstrip().split())
+    if n <= 32:
+        for it in list(comb(_list, 3)):
+            temp = [it[0], it[1], it[2]]
+            tmp = 0
+            for _it in list(comb(temp, 2)):
+                for i in range(4):
+                    if _it[0][i] != _it[1][i]:
+                        tmp += 1
+            ret = min(ret, tmp)
+        print(ret)
     else:
-        print("neither")
-
-while 1:
-    n1,n2=list(map(int,input().rstrip().split()))
-    if not n1 and not n2:
-        break
-    go(n1,n2)
+        print(0)
