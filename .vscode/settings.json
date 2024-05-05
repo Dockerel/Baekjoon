@@ -21,6 +21,10 @@
         "string_view": "cpp",
         "tuple": "cpp",
         "cerrno": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "array": "cpp",
+        "bitset": "cpp",
+        "initializer_list": "cpp",
+        "valarray": "cpp"
     }
 }
