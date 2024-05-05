@@ -5,13 +5,13 @@ using namespace std;
 
 void init() {}
 
-int go() {}
+void go() {}
 
 int main() {
   fastIO;
 
   init();
-  cout << go() << "\n";
+  go();
 
   return 0;
 }
