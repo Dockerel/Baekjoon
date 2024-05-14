@@ -26,6 +26,7 @@
         "bitset": "cpp",
         "initializer_list": "cpp",
         "valarray": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "complex": "cpp"
     }
 }
