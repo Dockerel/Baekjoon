@@ -23,8 +23,8 @@ void go() {
   }
 
   for (int i = 0; i < n; i++) {
-    for (int j = i; j < i + n; j++) {
-      int temp = c_sum[j + 1] - c_sum[i];
+    for (int j = i + 1; j < i + n; j++) {  // i:0, j:1~3
+      int temp = c_sum[j] - c_sum[i];
       if (temp < 0) {
         ret += ceil(double(abs(temp)) / _sum);
       }
@@ -40,6 +40,3 @@ int main() {
   go();
   return 0;
 }
-
-// 1 1 1 -2
-// 1 2 3 1
