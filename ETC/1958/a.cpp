@@ -21,8 +21,8 @@ int LCS(string s1, string s2, string s3) {
         if (s1[i] == s2[j] && s1[i] == s3[k]) {
           dp[i + 1][j + 1][k + 1] = dp[i][j][k] + 1;
         } else {
-          dp[i + 1][j + 1][k + 1] = max(dp[i + 1][j][k],dp[i][j + 1][k],dp[i][j][k + 1]);
-          dp[i + 1][j + 1][k + 1] = max(dp[i + 1][j + 1][k],dp[i + 1][j][k + 1], dp[i][j + 1][k + 1]);
+          dp[i + 1][j + 1][k + 1] = max(
+              {dp[i + 1][j + 1][k], dp[i + 1][j][k + 1], dp[i][j + 1][k + 1]});
         }
       }
     }
