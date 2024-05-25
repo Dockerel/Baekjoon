@@ -8,7 +8,7 @@ n = int(input())
 def convertAddr(addr) -> int:
     temp = ""
     for num in addr:
-        temp += format(num)
+        temp += format(num, "08b")
     return int(temp, 2)
 
 
