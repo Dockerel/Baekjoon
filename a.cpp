@@ -9,9 +9,7 @@ void go() {}
 
 int main() {
   fastIO;
-
   init();
   go();
-
   return 0;
 }
