@@ -18,7 +18,7 @@ void init() {
 
 void go() {
   c_sum.push_back(0);
-  for (int i = 1; i <= 2 * n; i++) {
+  for (int i = 1; i < 2 * n; i++) {
     c_sum.push_back(c_sum[i - 1] + a[(i - 1) % n]);
   }
 
