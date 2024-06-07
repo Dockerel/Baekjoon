@@ -1,7 +1,6 @@
-n = int(input())
-
-max_star = 1 + 2 * (n - 1)
-for i in range(n):
-    curr = 1 + 2 * i
-    space = (max_star - curr) // 2
-    print(" " * space + "*" * curr + " " * space)
+n=int(input())
+for i in range(1,n):
+    print(" "*(n-i)+"*"*(i*2-1))
+print("*"*(n*2-1))
+for i in range(n-1,0,-1):
+    print(" "*(n-i)+"*"*(i*2-1))
