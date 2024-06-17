@@ -8,30 +8,32 @@ int n;
 int a[104][104];
 
 void init() {
-  cin>>n;
-  for(int i=0;i<n;i++){
-    for(int j=0;j<n;j++){
-      cin>>a[i][j];
-      if(a[i][j]==0) a[i][j]=INF;
+  cin >> n;
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      cin >> a[i][j];
+      if (a[i][j] == 0) a[i][j] = INF;
     }
   }
 }
 
 void go() {
-  for(int k=0;k<n;k++){
-    for(int i=0;i<n;i++){
-    for(int j=0;j<n;j++){
-      a[i][j]=min(a[i][j],a[i][k]+a[k][j]);
+  for (int k = 0; k < n; k++) {
+    for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+        a[i][j] = min(a[i][j], a[i][k] + a[k][j]);
+      }
     }
-  }
   }
 
-  for(int i=0;i<n;i++){
-    for(int j=0;j<n;j++){
-      if(a[i][j]==INF)cout<<"0 ";
-      else if(a[i][j]>0)cout<<"1 ";
+  for (int i = 0; i < n; i++) {
+    for (int j = 0; j < n; j++) {
+      if (a[i][j] == INF)
+        cout << "0 ";
+      else if (a[i][j] > 0)
+        cout << "1 ";
     }
-    cout<<"\n";
+    cout << "\n";
   }
 }
 
