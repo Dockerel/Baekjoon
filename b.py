@@ -1,7 +1,2 @@
-l1 = []
-l2 = []
-for _ in range(4):
-    l1.append(int(input()))
-for _ in range(2):
-    l2.append(int(input()))
-print(sum(l1) - min(l1) + max(l2))
+a,b,c=int(input()),int(input()),int(input())
+print(f"The 1-3-sum is {91+a+b*3+c}")
