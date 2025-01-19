@@ -1,11 +1,12 @@
-import datetime as dt
+from datetime import *
 
-ad=list(map(int,input().split()))
-start=dt.date(ad[0],ad[1],ad[2])
-tmp=dt.date(ad[0]+1000,ad[1],ad[2])
-bd=list(map(int,input().split()))
-finish=dt.date(bd[0],bd[1],bd[2])
-ret1=(finish-start).days
-ret2=(tmp-start).days
-if(ret2>ret1): print(f"D-{ret1}")
-else: print("gg")
+y1, m1, d1 = map(int, input().split())
+y2, m2, d2 = map(int, input().split())
+
+if y1 + 1000 < y2 or (y1 + 1000 == y2 and (m1, d1) <= (m2, d2)):
+    print("gg")
+    exit(0)
+    
+today = date(y1, m1, d1)
+d_day = date(y2, m2, d2)
+print(f"D-{d_day.toordinal() - today.toordinal()}")
