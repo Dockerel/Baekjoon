@@ -9,7 +9,7 @@ using namespace std;
 int n, l;
 int st, ed;
 
-vector<pair<int, int>> v;
+priority_queue<pii, vector<pii>, greater<pii>> pq;
 
 int curr, ret;
 
@@ -17,30 +17,28 @@ void init() {
   cin >> n >> l;
   for (int _ = 0; _ < n; _++) {
     cin >> st >> ed;
-    v.push_back({st, ed});
+    pq.push({st, ed});
   }
-  sort(v.begin(), v.end());
-  curr = v[0].ff;
+  curr = pq.top().ff;
 }
 
 void go() {
-  for (int i = 0; i < v.size(); i++) {
-    auto it = v[i];
+  while (!pq.empty()) {
+    auto it = pq.top();
+    pq.pop();
 
     while (curr < it.ss) {
       curr += l;
       ret += 1;
     }
 
-    while (1) {
-      if (i + 1 == v.size()) break;
-
-      auto nxt = v[i + 1];
+    while (!pq.empty()) {
+      auto nxt = pq.top();
       if (curr < nxt.ff) {
         curr = nxt.ff;
         break;
       } else if (nxt.ss < curr) {
-        i += 1;
+        pq.pop();
         continue;
       } else {
         break;
