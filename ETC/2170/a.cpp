@@ -5,25 +5,25 @@
 using namespace std;
 
 int n, st, ed, prev_st, prev_ed, ret;
-priority_queue<pii, vector<pii>, greater<pii>> pq;
+vector<pii> v;
 
 void init() {
   cin >> n;
   for (int _ = 0; _ < n; _++) {
     cin >> st >> ed;
-    pq.push({st, ed});
+    v.push_back({st, ed});
   }
   ret = 0;
 
-  tie(st, ed) = pq.top();
-  pq.pop();
+  sort(v.begin(), v.end());
+
+  tie(st, ed) = v[0];
   prev_st = st, prev_ed = ed;
 }
 
 void go() {
-  while (!pq.empty()) {
-    tie(st, ed) = pq.top();
-    pq.pop();
+  for (int i = 1; i < n; i++) {
+    tie(st, ed) = v[i];
     // 전부다 st 기준으로 판단?
     if (st <= prev_ed) {
       // ed가 기존 범위 벗어나는 경우
